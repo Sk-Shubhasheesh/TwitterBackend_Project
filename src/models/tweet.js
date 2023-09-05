@@ -15,8 +15,16 @@ const tweetSchema = new mongoose.Schema({
     }
 ]
 }, {timestamps: true});
+
+// concept of virtuals in mongodb
 tweetSchema.virtual('contentWithEmail').get(function process() {
     return `${this.content} \nCreated by: ${this.userEmail}`;
+})
+
+// concept of hooks in mogodb nothing but like trigger
+tweetSchema.pre('save', function(next){
+    console.log('Inside a hook');
+    next();
 })
 
 // creating model
