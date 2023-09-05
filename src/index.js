@@ -41,6 +41,7 @@ app.listen(3000, async () => {
     // await tweet.save();
     // console.log(tweet);
 
-    const tweet = await tweetRepo.getWithComments('64e8bf1fd236ddde812ad073');
-    console.log(tweet);
+    // const tweet = await tweetRepo.getWithComments('64e8bf1fd236ddde812ad073');
+    const tweet = await tweetRepo.getAll(0, 4);
+    console.log(tweet[0].contentWithEmail); // virtual concept
 });
