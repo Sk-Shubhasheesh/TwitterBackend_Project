@@ -24,6 +24,7 @@ tweetSchema.virtual('contentWithEmail').get(function process() {
 // concept of hooks in mogodb nothing but like trigger
 tweetSchema.pre('save', function(next){
     console.log('Inside a hook');
+    this.content = this.content + '...'; // this line update the tweet
     next();
 })
 
