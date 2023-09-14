@@ -19,25 +19,6 @@ class TweetRepository {
             console.log(error);
         }
     }
-
-    async getWithComments(id){
-        try {
-            const tweet = await Tweet.findById(id).populate({path: 'comments'});
-            return tweet; 
-        } catch (error) {
-            console.log(error);
-        }
-    }
-   // update tweet
-    async update(tweetId, data) {
-        try {
-            const tweet = await Tweet.findByIdAndUpdate(tweetId, data, {new:true});
-            return tweet; 
-        } catch (error) {
-            console.log(error);
-        }
-
-    }
  // delete tweet
     async destroy(id) {
         try {
@@ -47,6 +28,19 @@ class TweetRepository {
             console.log(error);
         }
 
+    }
+    async getWithComments(id) {
+        try {
+            const tweet = await Tweet.findById(id).populate({
+                path: 'comments',
+                populate: {
+                    path: 'comments'
+                }
+            }).lean();
+            return tweet;
+        } catch (error) {
+            console.log(error);
+        }
     }
     // get data based on pagination
     async getAll(offset, limit){
@@ -59,4 +53,4 @@ class TweetRepository {
     }
 }
 
-module.exports = TweetRepository
+module.exports = TweetRepository;
