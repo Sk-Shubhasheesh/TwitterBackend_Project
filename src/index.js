@@ -1,15 +1,18 @@
 import express from 'express';
+import bodyParser from 'body-parser';
 import{connect} from './config/database.js'
+
+import apiRoutes from './routes/index.js'
+
 const app = express();
-import service from './services/tweet-service.js'
-import TweetService from './services/tweet-service.js';
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended:true}));
+
+app.use('/api', apiRoutes);
+
 app.listen(3000, async () => {
     console.log("server started");
     await connect();
     console.log("Mongo db connect");
-    let repo = new TweetService();
-    await repo.create({
-        content:'My other #js #CoDE #works or #Not ?'
-    })
-
+    
 });
