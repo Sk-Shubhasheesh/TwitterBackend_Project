@@ -9,7 +9,7 @@ app.listen(3000, async () => {
     console.log("Mongo db connect");
     let repo = new TweetService();
     await repo.create({
-        content:'Done with #refactor ?'
+        content:'My other #js #CoDE #works or #Not ?'
     })
 
 });

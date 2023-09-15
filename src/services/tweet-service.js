@@ -8,7 +8,9 @@ class TweetService {
     async create(data){
         const content = data.content;
         // extract hashtag from content using regular expression
-        const tags = content.match(/#[a-zA-Z0-9_]+/g).map((tag) => tag.substring(1));
+        const tags = content.match(/#[a-zA-Z0-9_]+/g)
+                         .map((tag) => tag.substring(1)) // this line remove # from hashtag
+                         .map(tag => tag.toLowerCase()); // after extracting covert all the tag into lower case
         const tweet = await this.tweetRepository.create(data);
         // finding already present hashtag which gives me to hole hashtag
         let alreadyPresentTags = await this.hashtagRepository.findByName(tags);

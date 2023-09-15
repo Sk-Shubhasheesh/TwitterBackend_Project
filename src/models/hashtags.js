@@ -3,7 +3,8 @@ import mongoose from "mongoose";
 const hashtagSchema = new mongoose.Schema({
     title: {
         type: String,
-        required: true
+        required: true,
+        unique: true
     },
     // multiple tweets id thats belong to hashtag means one hashtag has multiple tweet
     tweets: [
