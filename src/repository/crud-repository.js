@@ -1,6 +1,6 @@
+
 class CrudRepository {
-    // This line defines the constructor method for the CrudRepository class which automatically called when you create a new instance of a class. 
-    constructor(model){
+    constructor(model) {
         this.model = model;
     }
 
@@ -12,10 +12,9 @@ class CrudRepository {
             console.log("Something went wrong in crud repo");
             throw error;
         }
-    
     }
 
-    async destroy(id){
+    async destroy(id) {
         try {
             const result = await this.model.findByIdAndDelete(id);
             return result;
@@ -25,7 +24,7 @@ class CrudRepository {
         }
     }
 
-    async get(id){
+    async get(id) {
         try {
             const result = await this.model.findById(id);
             return result;
@@ -35,7 +34,7 @@ class CrudRepository {
         }
     }
 
-    async getAll(){
+    async getAll() {
         try {
             const result = await this.model.find({});
             return result;
@@ -45,15 +44,16 @@ class CrudRepository {
         }
     }
 
-    async update(id, data){
+    async update(id, data) {
         try {
-            const result = await this.model.findByIdAndUpdate(id, data, {new:true}); // pass  {new:true} for finding the updated document in moongodb
+            const result = await this.model.findByIdAndUpdate(id, data, {new: true});
             return result;
-        } catch (error) {
+        } catch(error) {
             console.log("Something went wrong in crud repo");
             throw error;
         }
     }
+
 }
 
 export default CrudRepository;
