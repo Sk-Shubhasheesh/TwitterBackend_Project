@@ -11,5 +11,4 @@ export {
     UserRepository,
     CrudRepository,
     CommentRepository
-
 }
